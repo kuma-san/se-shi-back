@@ -1,0 +1,21 @@
+<?php
+
+define('DB_DSN', 'mysql');
+define('DB_HOST', 'host');
+define('DB_PORT', port);
+define('DB_NAME', 'dbname');
+define('DB_USER', 'dbuser');
+define('DB_PASS', 'dbpass');
+
+try {
+    \ORM::configure([
+        'connection_string' => sprintf('%s:host=%s;dbname=%s;port=%d', DB_DSN, DB_HOST, DB_NAME, DB_PORT),
+        'username' => DB_USER,
+        'password' => DB_PASS,
+        'id_column_overrides' => array(
+		'user' => 'idfv'
+	)
+    ]);
+} catch (Exception $e) {
+    $app->halt(500, $e->getMessage());
+}
